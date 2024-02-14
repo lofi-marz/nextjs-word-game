@@ -129,7 +129,8 @@ export function GameWordsGroup({
                             className="flex flex-col items-center justify-center first:mt-auto"
                             initial="hide"
                             animate="show"
-                            transition={{ staggerChildren: 0.5 }}>
+                            transition={{ staggerChildren: 0.5 }}
+                            layout>
                             <SubmittedWord
                                 word={w}
                                 isLast={
