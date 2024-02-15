@@ -15,7 +15,7 @@ export default function RootLayout({
             <body
                 className={cn(
                     sans.variable,
-                    'flex h-screen max-h-screen flex-col items-center justify-start bg-theme font-sans text-theme-invert'
+                    'flex h-[100dvh] flex-col items-center justify-start bg-theme font-sans text-theme-invert'
                 )}>
                 <Providers>
                     <Nav />

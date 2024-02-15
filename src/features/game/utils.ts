@@ -15,11 +15,16 @@ function numberToEmoji(n: number) {
 
     return emojiMap.get(n);
 }
-export function exportGame(userPath: string[], correctPath: string[]) {
+export function exportGame(
+    userPath: string[],
+    correctPath: string[],
+    day: number
+) {
     const places = userPath.map((w) => correctPath.indexOf(w) + 1);
     const scoredPath = scorePath(userPath, correctPath);
-    console.log(scoredPath, places);
+    console.log({ scoredPath, places });
     let shareString = places.map(numberToEmoji).join('') + '\n';
+
     shareString += scoredPath
         .map(({ correct }) => (correct ? '🟩' : '🟥'))
         .join('');

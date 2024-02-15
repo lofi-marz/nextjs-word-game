@@ -8,3 +8,5 @@ export const ZGameConfig = z
     .refine(({ words, links }) => words.length - 1 === links.length);
 
 export type GameConfig = z.infer<typeof ZGameConfig>;
+
+export type GameEndState = 'win' | 'lose' | null;

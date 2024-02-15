@@ -1,7 +1,7 @@
 'use client';
 import { MotionGridListItem } from '@/utils/motion';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import {
     Button,
     Checkbox,
@@ -14,7 +14,12 @@ import { Selection } from 'react-aria-components';
 import { themeColors } from '../../../../tailwind.config';
 import theme from 'tailwindcss/defaultTheme';
 import { exportGame, scorePath } from '../utils';
-import { cn } from '@/utils/utils';
+import { cn, shuffleArray } from '@/utils/utils';
+import { GameEndDialog } from './GameEndDialog';
+import { toastQueue } from '@/components/toast';
+import { LivesDisplay } from './LivesDisplay';
+import { MAX_LIVES } from '../consts';
+import { GameEndState } from '../types';
 const connectionWordVariants: Variants = {
     hide: { scaleX: 0 },
     show: { scaleX: 1, transition: { ease: 'anticipate', duration: 0.5 } },
@@ -106,19 +111,31 @@ export function GameWordsGroup({
     const correctWords = labelledSubmitted
         .filter(({ correct }) => correct)
         .map(({ word }) => word);
-
+    
+    const wrongCount = labelledSubmitted.length - correctWords.length;
     const hasWon = sameArray(correctWords, words);
-    console.log(exportGame(allSubmitted, words));
-    console.log({ hasWon, correctWords });
+    const hasLost = !hasWon && wrongCount >= MAX_LIVES;
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true)
+    }, [mounted])
+    const shuffledWords = useMemo(() => mounted ? shuffleArray(restWords) : restWords, [restWords, mounted])
+    const gameEndState: GameEndState = [null, 'lose', 'win'][
+        Number(hasLost) + 2 * Number(hasWon)
+    ] as GameEndState;
+    console.log(exportGame(allSubmitted, words, 1));
+    console.log({ hasWon, hasLost, gameEndState, correctWords });
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (containerRef.current) {
-            containerRef.current.scroll({top: containerRef.current.scrollHeight, behavior: 'smooth'})
-            
+            containerRef.current.scroll({
+                top: containerRef.current.scrollHeight,
+                behavior: 'smooth',
+            });
         }
     }, [allSubmitted]);
     return (
-        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 text-lg font-semibold">
+        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold">
             <div
                 className="relative flex max-h-full w-full grow flex-col items-center overflow-y-scroll py-4 text-3xl"
                 ref={containerRef}>
@@ -173,9 +190,17 @@ export function GameWordsGroup({
                     onSelectionChange={setSelected}
                     aria-label="Submmitted words"
                     disabledKeys={correctWords}
-                    items={restWords.map((w) => ({ key: w, name: w }))}>
+                    items={shuffledWords.map((w) => ({ key: w, name: w }))}>
                     {(w) => {
-                        return <GameWord>{w.name}</GameWord>;
+                        return (
+                            <GameWord
+                                isLast={
+                                    allSubmitted[allSubmitted.length - 1] ===
+                                    w.name
+                                }>
+                                {w.name}
+                            </GameWord>
+                        );
                     }}
                 </GridList>
                 <Button
@@ -196,7 +221,15 @@ export function GameWordsGroup({
                     className="card card-s transition-all card-solid-primary-400 hover:brightness-110 pressed:brightness-90 disabled:text-grey-400 disabled:card-solid-theme-invert">
                     Submit
                 </Button>
+                <LivesDisplay livesUsed={wrongCount} maxLives={MAX_LIVES} />
             </div>
+            <GameEndDialog
+                day={0}
+                userPath={allSubmitted}
+                correctPath={words}
+                gameEndState={gameEndState}
+                key={gameEndState}
+            />
         </div>
     );
 }
@@ -215,7 +248,11 @@ const gameWordVariants: Variants = {
     },
 };
 
-function GameWord({ children, ...props }: GridListItemProps) {
+function GameWord({
+    children,
+    isLast,
+    ...props
+}: GridListItemProps & { isLast: boolean }) {
     const textValue = typeof children === 'string' ? children : undefined;
 
     return (
