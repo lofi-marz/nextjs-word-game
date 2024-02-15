@@ -95,9 +95,11 @@ function sameArray<T>(arr1: T[], arr2: T[]) {
 export function GameWordsGroup({
     words,
     reasons,
+    shuffledWords,
 }: {
     words: string[];
     reasons: string[];
+    shuffledWords: string[];
 }) {
     const [startWord, ...restWords] = words;
     const [selected, setSelected] = useState<Selection>(new Set());
@@ -111,15 +113,11 @@ export function GameWordsGroup({
     const correctWords = labelledSubmitted
         .filter(({ correct }) => correct)
         .map(({ word }) => word);
-    
+
     const wrongCount = labelledSubmitted.length - correctWords.length;
     const hasWon = sameArray(correctWords, words);
     const hasLost = !hasWon && wrongCount >= MAX_LIVES;
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true)
-    }, [mounted])
-    const shuffledWords = useMemo(() => mounted ? shuffleArray(restWords) : restWords, [restWords, mounted])
+
     const gameEndState: GameEndState = [null, 'lose', 'win'][
         Number(hasLost) + 2 * Number(hasWon)
     ] as GameEndState;
