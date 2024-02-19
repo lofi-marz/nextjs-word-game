@@ -1,25 +1,22 @@
 'use client';
 import { MotionGridListItem } from '@/utils/motion';
 import { AnimatePresence, Variants, motion } from 'framer-motion';
-import React, { useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     Button,
     Checkbox,
     GridList,
-    GridListItem,
     GridListItemProps,
 } from 'react-aria-components';
 
 import { Selection } from 'react-aria-components';
-import { themeColors } from '../../../../tailwind.config';
-import theme from 'tailwindcss/defaultTheme';
 import { exportGame, scorePath } from '../utils';
-import { cn, shuffleArray } from '@/utils/utils';
+import { cn } from '@/utils/utils';
 import { GameEndDialog } from './GameEndDialog';
-import { toastQueue } from '@/components/toast';
 import { LivesDisplay } from './LivesDisplay';
 import { MAX_LIVES } from '../consts';
 import { GameEndState } from '../types';
+import { useGameStore } from '../stores';
 const connectionWordVariants: Variants = {
     hide: { scaleX: 0 },
     show: { scaleX: 1, transition: { ease: 'anticipate', duration: 0.5 } },
@@ -104,11 +101,10 @@ export function GameWordsGroup({
     const [startWord, ...restWords] = words;
     const [selected, setSelected] = useState<Selection>(new Set());
 
-    const [allSubmitted, setAllSubmitted] = useState<string[]>([startWord]);
-    //pride lion cat
-    //pride cat lion cat
+    const guesses = useGameStore((state) => state.guesses);
+    const submitWord = useGameStore((state) => state.guess);
 
-    const labelledSubmitted = scorePath(allSubmitted, words);
+    const labelledSubmitted = scorePath(guesses, words);
 
     const correctWords = labelledSubmitted
         .filter(({ correct }) => correct)
@@ -121,7 +117,7 @@ export function GameWordsGroup({
     const gameEndState: GameEndState = [null, 'lose', 'win'][
         Number(hasLost) + 2 * Number(hasWon)
     ] as GameEndState;
-    console.log(exportGame(allSubmitted, words, 1));
+    console.log(exportGame(guesses, words, 1));
     console.log({ hasWon, hasLost, gameEndState, correctWords });
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -131,14 +127,14 @@ export function GameWordsGroup({
                 behavior: 'smooth',
             });
         }
-    }, [allSubmitted]);
+    }, [guesses]);
     return (
         <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold">
             <div
-                className="relative flex max-h-full w-full grow flex-col items-center overflow-y-scroll py-4 text-3xl"
+                className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded  px-12 py-4 text-3xl"
                 ref={containerRef}>
                 <AnimatePresence>
-                    {allSubmitted.map((w, i, arr) => (
+                    {guesses.map((w, i, arr) => (
                         <motion.div
                             key={i}
                             className="flex flex-col items-center justify-center first:mt-auto"
@@ -192,10 +188,7 @@ export function GameWordsGroup({
                     {(w) => {
                         return (
                             <GameWord
-                                isLast={
-                                    allSubmitted[allSubmitted.length - 1] ===
-                                    w.name
-                                }>
+                                isLast={guesses[guesses.length - 1] === w.name}>
                                 {w.name}
                             </GameWord>
                         );
@@ -210,20 +203,18 @@ export function GameWordsGroup({
                         console.log('Press clicked');
                         if (typeof selected === 'string') return;
                         const [selectedWord] = [...selected];
+                        submitWord(selectedWord.toString());
                         console.log('Word');
-                        setAllSubmitted((ss) => [
-                            ...ss,
-                            selectedWord.toString(),
-                        ]);
                     }}
                     className="card card-s transition-all card-solid-primary-400 hover:brightness-110 pressed:brightness-90 disabled:text-grey-400 disabled:card-solid-theme-invert">
                     Submit
                 </Button>
                 <LivesDisplay livesUsed={wrongCount} maxLives={MAX_LIVES} />
             </div>
+            
             <GameEndDialog
                 day={0}
-                userPath={allSubmitted}
+                userPath={guesses}
                 correctPath={words}
                 gameEndState={gameEndState}
                 key={gameEndState}

@@ -33,19 +33,18 @@ export function GameEndDialog({
         }
     };
     return (
-        <ModalDialog
-            title={title}
-            isOpen={isOpen}
-            onOpenChange={setIsOpen}
-            hideClose>
-            <div className="relative whitespace-pre rounded-xl bg-grey-50/10 p-5 text-center font-mono text-xs sm:text-lg">
-                {shareMessage}
-            </div>
-            <Button
-                className="mx-auto flex w-fit flex-row items-center justify-center gap-2 rounded-xl bg-primary-400 px-4 py-2 font-semibold text-light transition-all hover:scale-105 pressed:scale-95"
-                onPress={copy}>
-                Copy <FaClipboard />
-            </Button>
-        </ModalDialog>
+        <>
+            <Button>Results</Button>
+            <ModalDialog title={title} isOpen={isOpen} onOpenChange={setIsOpen}>
+                <div className="relative whitespace-pre rounded bg-grey-50/10 p-5 text-center font-mono text-xs sm:text-lg">
+                    {shareMessage}
+                </div>
+                <Button
+                    className="mx-auto flex w-fit flex-row items-center justify-center gap-2 rounded-full bg-primary-400 px-4 py-2 font-semibold text-light transition-all hover:scale-105 pressed:scale-95"
+                    onPress={copy}>
+                    Copy <FaClipboard />
+                </Button>
+            </ModalDialog>
+        </>
     );
 }

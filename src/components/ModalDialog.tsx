@@ -76,7 +76,7 @@ export function ModalDialog({
                                 </button>
                             )}
 
-                            <motion.div className="prose-headings:heading prose prose-stone prose-invert flex w-full flex-col gap-4">
+                            <motion.div className="prose-headings:heading prose prose-stone flex w-full flex-col gap-4 dark:prose-invert">
                                 {children}
                             </motion.div>
                         </Dialog>

@@ -1,3 +1,5 @@
+import { GameState, GameStore } from './types';
+
 function numberToEmoji(n: number) {
     const emojiMap = new Map([
         [0, '0️⃣'],
@@ -38,4 +40,20 @@ export function scorePath(userPath: string[], correctPath: string[]) {
         if (correct) j++;
         return { word, correct };
     });
+}
+
+export function getGameRound(max?: number): number {
+    const today = new Date();
+    const july17 = new Date(2023, 6, 17); // 2023-07-17
+
+    const timeDifference = today.getTime() - july17.getTime();
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return max ? daysDifference % max : daysDifference;
+}
+
+export function gamesEqual(game1: GameState, game2: GameState) {
+    return (
+        game1.day === game2.day &&
+        game1.words.every((w1) => game2.words.includes(w1))
+    );
 }
