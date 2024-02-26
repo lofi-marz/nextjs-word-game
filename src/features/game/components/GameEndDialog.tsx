@@ -34,7 +34,7 @@ export function GameEndDialog({
     };
     return (
         <>
-            <Button>Results</Button>
+            {gameEndState && <Button>Results</Button>}
             <ModalDialog title={title} isOpen={isOpen} onOpenChange={setIsOpen}>
                 <div className="relative whitespace-pre rounded bg-grey-50/10 p-5 text-center font-mono text-xs sm:text-lg">
                     {shareMessage}

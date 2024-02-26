@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const ZGameConfig = z
     .object({
-        words: z.array(z.string()),
-        links: z.array(z.string()),
+        words: z.array(z.string()).length(8),
+        links: z.array(z.string()).length(7),
     })
     .refine(({ words, links }) => words.length - 1 === links.length);
 

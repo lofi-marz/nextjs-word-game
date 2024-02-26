@@ -1,8 +1,16 @@
 import { GameConfig } from './types';
 
 const testGame1: GameConfig = {
-    words: ['lust', 'pride', 'lion', 'cat', 'dog', 'better'],
-    links: ['deadly sins', 'a _ of _', 'feline', 'pets', '_ days'],
+    words: ['lush', 'lust', 'pride', 'lion', 'cat', 'dog', 'better', 'row'],
+    links: [
+        'lus_',
+        'deadly sins',
+        'a _ of _',
+        'feline',
+        'pets',
+        '_ days',
+        'greek letter homonyms',
+    ],
 };
 
 const testGame2: GameConfig = {
@@ -21,8 +29,18 @@ const testGame2: GameConfig = {
 type GameWords = [string, ...string[]];
 
 const testGame3: GameConfig = {
-    words: ['pain', 'harmony', 'discord', 'slack', 'cake', 'wagon', 'carriage'],
+    words: [
+        'iran',
+        'pain',
+        'harmony',
+        'discord',
+        'slack',
+        'cake',
+        'wagon',
+        'carriage',
+    ],
     links: [
+        'countries minus the first letter',
         'in _',
         'antonyms',
         'instant messaging apps',
@@ -33,13 +51,24 @@ const testGame3: GameConfig = {
 };
 
 const testGame4: GameConfig = {
-    words: ['connections', 'mini', 'toy', 'story', 'jab', 'pull'],
+    words: [
+        'callaloo',
+        'connections',
+        'mini',
+        'toy',
+        'story',
+        'jab',
+        'pull',
+        'check',
+    ],
     links: [
+        '3 syllable words',
         'Word games',
         'Smaller version',
         'Toy Story',
         'Hi_',
         'Boxing terms',
+        '_ out',
     ],
 };
 

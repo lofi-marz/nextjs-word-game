@@ -19,8 +19,11 @@ export function GameScreen({ dayParam }: GameScreenProps) {
     useEffect(() => {
         //TODO: This probably isnt right
         if (!gameIsHydrated) return;
-        if (dayParam !== day || !gamesEqual(game, games[dayParam]))
+
+        if (dayParam !== day || !gamesEqual(game, {...games[dayParam], day: dayParam})) {
+            console.log(`New game ${day} -> ${dayParam}`);
             initializeGame(dayParam, games[dayParam]);
+        }
     }, [day, gameIsHydrated, dayParam, initializeGame]);
     if (!gameIsHydrated) return null;
 

@@ -98,7 +98,6 @@ export function GameWordsGroup({
     reasons: string[];
     shuffledWords: string[];
 }) {
-    const [startWord, ...restWords] = words;
     const [selected, setSelected] = useState<Selection>(new Set());
 
     const guesses = useGameStore((state) => state.guesses);
@@ -211,7 +210,7 @@ export function GameWordsGroup({
                 </Button>
                 <LivesDisplay livesUsed={wrongCount} maxLives={MAX_LIVES} />
             </div>
-            
+
             <GameEndDialog
                 day={0}
                 userPath={guesses}
@@ -246,11 +245,11 @@ function GameWord({
 
     return (
         <MotionGridListItem
-            className="card-s md:card-m bg-theme-invert font-semibold text-theme transition-all selected:bg-primary-400 selected:text-light disabled:text-grey-400 md:text-3xl"
+            className="card-s md:card-m cursor-pointer bg-theme-invert font-semibold text-theme transition-all active:scale-95 selected:bg-primary-400 selected:text-light disabled:text-grey-400 md:text-3xl"
             textValue={textValue}
             {...props}
             variants={gameWordVariants}>
-            <Checkbox className="" slot="selection">
+            <Checkbox className="cursor-pointer " slot="selection">
                 {children as string}
             </Checkbox>
         </MotionGridListItem>

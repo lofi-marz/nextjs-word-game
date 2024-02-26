@@ -51,9 +51,18 @@ export function getGameRound(max?: number): number {
     return max ? daysDifference % max : daysDifference;
 }
 
-export function gamesEqual(game1: GameState, game2: GameState) {
-    return (
-        game1.day === game2.day &&
-        game1.words.every((w1) => game2.words.includes(w1))
-    );
+export function gamesEqual(
+    game1: Pick<GameState, 'day' | 'words'>,
+    game2: Pick<GameState, 'day' | 'words'>
+) {
+    //console.log('Games:', game1, game2);
+    if (game1.day !== game2.day) return false;
+    //console.log('Same day');
+    if (game1.words.length !== game2.words.length) return false;
+    //console.log('Same length');
+    for (let i = 0; i < game1.words.length; i++) {
+        //console.log('Comparing:', game1.words[i], game2.words[i]);
+        if (game1.words[i] !== game2.words[i]) return false;
+    }
+    return true;
 }

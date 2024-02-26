@@ -20,7 +20,7 @@ export default function Index({
     const hasParam = searchParams.game !== undefined;
     let gameParam = Number(searchParams.game ?? 0);
     if (gameParam > games.length - 1 || Number.isNaN(gameParam)) gameParam = 0;
-
+    
     return (
         <div className="flex max-w-screen-md grow flex-col overflow-clip font-sans">
             <GameScreen dayParam={gameParam} key={gameParam} />
