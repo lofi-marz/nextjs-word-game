@@ -90,10 +90,12 @@ function sameArray<T>(arr1: T[], arr2: T[]) {
 }
 
 export function GameWordsGroup({
+    day,
     words,
     reasons,
     shuffledWords,
 }: {
+    day: number;
     words: string[];
     reasons: string[];
     shuffledWords: string[];
@@ -212,7 +214,7 @@ export function GameWordsGroup({
             </div>
 
             <GameEndDialog
-                day={0}
+                day={day}
                 userPath={guesses}
                 correctPath={words}
                 gameEndState={gameEndState}

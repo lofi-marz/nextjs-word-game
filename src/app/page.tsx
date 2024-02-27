@@ -16,14 +16,14 @@ export default function Index({
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
     const day = getGameRound(games.length);
-    console.log(day);
+    console.log('Day:', day);
     const hasParam = searchParams.game !== undefined;
     let gameParam = Number(searchParams.game ?? 0);
     if (gameParam > games.length - 1 || Number.isNaN(gameParam)) gameParam = 0;
-    
+
     return (
         <div className="flex max-w-screen-md grow flex-col overflow-clip font-sans">
-            <GameScreen dayParam={gameParam} key={gameParam} />
+            <GameScreen dayParam={day} key={day} />
             {hasParam && (
                 <div className="absolute right-0 flex flex-col gap-2 p-2">
                     {games.map((_, i) => (

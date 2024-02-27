@@ -30,7 +30,8 @@ export function HowToPlay() {
                 </ul>
                 Each puzzle has exactly one solution, so watch out for words
                 that look like they may connect to multiple words. You have{' '}
-                {MAX_LIVES} lives. Good luck!
+                {MAX_LIVES} lives. Good luck! If you liked this game, say{' '}
+                <a href="https://twitter.com/marile0n">hi :)</a>
             </ModalDialog>
         </>
     );

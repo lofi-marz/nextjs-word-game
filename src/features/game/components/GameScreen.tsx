@@ -14,13 +14,17 @@ type GameScreenProps = {
 export function GameScreen({ dayParam }: GameScreenProps) {
     const gameIsHydrated = useGameIsHydrated();
     const day = useGameStore((state) => state.day);
+    console.log(day);
     const game = useGameStore((state) => state);
     const initializeGame = useGameStore((state) => state.initializeGame);
     useEffect(() => {
         //TODO: This probably isnt right
         if (!gameIsHydrated) return;
 
-        if (dayParam !== day || !gamesEqual(game, {...games[dayParam], day: dayParam})) {
+        if (
+            dayParam !== day ||
+            !gamesEqual(game, { ...games[dayParam], day: dayParam })
+        ) {
             console.log(`New game ${day} -> ${dayParam}`);
             initializeGame(dayParam, games[dayParam]);
         }
@@ -29,6 +33,7 @@ export function GameScreen({ dayParam }: GameScreenProps) {
 
     return (
         <GameWordsGroup
+            day={day}
             words={game.words}
             reasons={game.links}
             shuffledWords={game.shuffledWords}

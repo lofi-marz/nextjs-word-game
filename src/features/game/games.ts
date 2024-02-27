@@ -72,4 +72,28 @@ const testGame4: GameConfig = {
     ],
 };
 
+const testGame5: GameConfig = {
+    words: ['zoom', 'flash', 'hell', 'heel', 'face', 'brave', 'chrome', 'bard'],
+    links: [
+        'DC speedsters',
+        '_ fire',
+        'h__l',
+        'wrestling terms',
+        'stand up to, as a challenge',
+        'browsers',
+        'Google products',
+    ],
+};
+
+const testGame6: GameConfig = {
+    words: ['mega', 'kilo', 'delta', 'bank', 'cash', 'check', 'cheque'],
+    links: [
+        'Prefixes',
+        'NATO alphabet',
+        'Store',
+        'Methods of paying',
+        'Homophones',
+    ],
+};
+
 export const games = [testGame1, testGame2, testGame3, testGame4];
