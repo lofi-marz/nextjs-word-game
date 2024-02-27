@@ -3,6 +3,25 @@ import { GameScreen } from '@/features/game/components';
 import { games } from '@/features/game/games';
 import Link from 'next/link';
 import { getGameRound } from '@/features/game/utils';
+import { Metadata } from 'next'; // if using TypeScript
+
+export const metadata: Metadata = {
+    openGraph: {
+        title: 'SemUp',
+        description: 'SemUp',
+        url: 'https://sup.omarileon.me/',
+        siteName: 'SemUp',
+        images: [
+            {
+                url: 'https://sup.omarileon.me/og.png',
+                width: 1280,
+                height: 720,
+            },
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
+};
 
 /*try {
     ZGameConfig.safeParse(game);

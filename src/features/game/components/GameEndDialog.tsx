@@ -34,7 +34,9 @@ export function GameEndDialog({
     };
     return (
         <>
-            {gameEndState && <Button>Results</Button>}
+            {gameEndState && (
+                <Button onPress={() => setIsOpen(true)}>Results</Button>
+            )}
             <ModalDialog title={title} isOpen={isOpen} onOpenChange={setIsOpen}>
                 <div className="relative whitespace-pre rounded bg-grey-50/10 p-5 text-center font-mono text-xs sm:text-lg">
                     {shareMessage}
@@ -44,6 +46,10 @@ export function GameEndDialog({
                     onPress={copy}>
                     Copy <FaClipboard />
                 </Button>
+                <p>
+                    If you liked this game, or if you have any feedback, say{' '}
+                    <a href="https://twitter.com/marile0n">hi :)</a>
+                </p>
             </ModalDialog>
         </>
     );
