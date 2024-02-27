@@ -1,6 +1,7 @@
 import { cn } from '@/utils/utils';
 import { Providers } from './providers';
 import { sans } from '@/styles/fonts';
+import { Analytics } from '@vercel/analytics/react';
 import '../styles/globals.css';
 import { Nav } from '../components';
 export default function RootLayout({
@@ -20,6 +21,7 @@ export default function RootLayout({
                 <Providers>
                     <Nav />
                     {children}
+                    <Analytics />
                 </Providers>
             </body>
         </html>
