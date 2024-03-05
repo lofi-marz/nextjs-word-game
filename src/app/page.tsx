@@ -8,7 +8,7 @@ import { Metadata } from 'next'; // if using TypeScript
 export const metadata: Metadata = {
     openGraph: {
         title: 'SemUp',
-        description: 'Can ou find the connections?',
+        description: 'Can you find the connections?',
         url: 'https://sup.omarileon.me/',
         siteName: 'SemUp',
         images: [

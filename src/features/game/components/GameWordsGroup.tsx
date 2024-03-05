@@ -132,7 +132,7 @@ export function GameWordsGroup({
     return (
         <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold">
             <div
-                className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded  px-12 py-4 text-3xl"
+                className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded px-12 py-4 text-3xl"
                 ref={containerRef}>
                 <AnimatePresence>
                     {guesses.map((w, i, arr) => (
