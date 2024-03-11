@@ -64,7 +64,7 @@ dependencies:
     version: 3.22.4
   zustand:
     specifier: ^4.5.1
-    version: 4.5.1(@types/react@18.2.58)(react@18.2.0)
+    version: 4.5.1(@types/react@18.2.64)(react@18.2.0)
 
 devDependencies:
   '@tailwindcss/forms':
@@ -83,8 +83,8 @@ devDependencies:
     specifier: 14.5.2
     version: 14.5.2(@testing-library/dom@9.3.4)
   '@types/react':
-    specifier: 18.2.58
-    version: 18.2.58
+    specifier: 18.2.64
+    version: 18.2.64
   '@types/react-dom':
     specifier: ^18.2.19
     version: 18.2.19
@@ -2998,11 +2998,11 @@ packages:
   /@types/react-dom@18.2.19:
     resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
-      '@types/react': 18.2.58
+      '@types/react': 18.2.64
     dev: true
 
-  /@types/react@18.2.58:
-    resolution: {integrity: sha512-TaGvMNhxvG2Q0K0aYxiKfNDS5m5ZsoIBBbtfUorxdH4NGSXIlYvZxLJI+9Dd3KjeB3780bciLyAb7ylO8pLhPw==}
+  /@types/react@18.2.64:
+    resolution: {integrity: sha512-MlmPvHgjj2p3vZaxbQgFUQFvD8QiZwACfGqEdDSWou5yISWxDQ4/74nCAwsUiX7UFLKZz3BbVSPj+YxeoGGCfg==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -7879,7 +7879,7 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  /zustand@4.5.1(@types/react@18.2.58)(react@18.2.0):
+  /zustand@4.5.1(@types/react@18.2.64)(react@18.2.0):
     resolution: {integrity: sha512-XlauQmH64xXSC1qGYNv00ODaQ3B+tNPoy22jv2diYiP4eoDKr9LA+Bh5Bc3gplTrFdb6JVI+N4kc1DZ/tbtfPg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -7894,7 +7894,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.2.58
+      '@types/react': 18.2.64
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
