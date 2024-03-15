@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "date": "2023-06-12",
+        "answers": [
+            {
+                "level": 0,
+                "group": "SNOWMAN",
+                "members": ["SNOW", "CARROT", "COAL", "HAT"]
+            },
+            {
+                "level": 1,
+                "group": "VEGETABLES",
+                "members": ["CARROT", "BEET", "POTATO", "BROCCOLI"]
+            },
+            {
+                "level": 1,
+                "group": "VEGETABLES 2",
+                "members": ["CARROT", "BEET", "POTATO", "BROCCOLI"]
+            },
+            {
+                "level": 2,
+                "group": "RED",
+                "members": ["CARDINAL", "APPLE", "BEET", "TOMATO"]
+            },
+            {
+                "level": 3,
+                "group": "BIRDS",
+                "members": ["SWIFT", "CARDINAL", "CHICKEN", "PIGEON"]
+            }
+        ]
+    }
+]

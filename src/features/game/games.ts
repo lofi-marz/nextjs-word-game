@@ -96,4 +96,34 @@ const testGame6: GameConfig = {
     ],
 };
 
-export const games = [testGame1, testGame2, testGame3, testGame4];
+const testGame7: GameConfig = {
+    words: [
+        'minute',
+        'hour',
+        'sour',
+        'sweet',
+        'nice',
+        'cork',
+        'paper',
+        'large',
+    ],
+    links: [
+        'Time',
+        'Rhyme',
+        'Taste',
+        'Cool!',
+        'Cities',
+        'Made from trees',
+        'Slang for money',
+    ],
+};
+
+export const games = [
+    testGame1,
+    testGame2,
+    testGame3,
+    testGame4,
+    testGame5,
+    testGame6,
+    testGame7,
+];

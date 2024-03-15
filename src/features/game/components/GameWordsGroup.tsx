@@ -130,7 +130,7 @@ export function GameWordsGroup({
         }
     }, [guesses]);
     return (
-        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold">
+        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold lowercase">
             <div
                 className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded px-12 py-4 text-3xl"
                 ref={containerRef}>

@@ -4,14 +4,15 @@ import { GameConfig, GameState } from '../types';
 import { GameWordsGroup } from './GameWordsGroup';
 import { useEffect } from 'react';
 import { useGameIsHydrated, useGameStore } from '../stores';
-import { games } from '../games';
+
 import { gamesEqual } from '../utils';
 
 type GameScreenProps = {
+    loadedGame: GameConfig;
     dayParam: number;
 };
 
-export function GameScreen({ dayParam }: GameScreenProps) {
+export function GameScreen({ loadedGame, dayParam }: GameScreenProps) {
     const gameIsHydrated = useGameIsHydrated();
     const day = useGameStore((state) => state.day);
     console.log(day);
@@ -23,12 +24,12 @@ export function GameScreen({ dayParam }: GameScreenProps) {
 
         if (
             dayParam !== day ||
-            !gamesEqual(game, { ...games[dayParam], day: dayParam })
+            !gamesEqual(game, { ...loadedGame, day: dayParam })
         ) {
             console.log(`New game ${day} -> ${dayParam}`);
-            initializeGame(dayParam, games[dayParam]);
+            initializeGame(dayParam, loadedGame);
         }
-    }, [day, gameIsHydrated, dayParam, initializeGame]);
+    }, [day, gameIsHydrated, dayParam, initializeGame, loadedGame]);
     if (!gameIsHydrated) return null;
 
     return (
