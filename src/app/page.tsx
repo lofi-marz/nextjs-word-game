@@ -56,7 +56,7 @@ export default async function Index({
     if (gameParam > games.length - 1 || Number.isNaN(gameParam)) gameParam = 0;
     if (!round) return null;
     return (
-        <div className="flex max-w-screen-md grow flex-col overflow-clip font-sans">
+        <div className="flex w-full max-w-screen-sm grow flex-col overflow-clip font-sans">
             <GameScreen
                 dayParam={day}
                 key={day}

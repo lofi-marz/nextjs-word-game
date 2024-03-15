@@ -130,9 +130,9 @@ export function GameWordsGroup({
         }
     }, [guesses]);
     return (
-        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 pb-12 text-lg font-semibold lowercase">
+        <div className="flex h-full flex-col items-center justify-center gap-4 p-4 text-lg font-semibold lowercase">
             <div
-                className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded px-12 py-4 text-3xl"
+                className="relative flex max-h-full w-96 grow flex-col items-center overflow-y-scroll rounded px-12 py-4 text-2xl"
                 ref={containerRef}>
                 <AnimatePresence>
                     {guesses.map((w, i, arr) => (
@@ -177,9 +177,9 @@ export function GameWordsGroup({
                     ))}
                 </AnimatePresence>
             </div>
-            <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex flex-col items-center justify-center gap-4 text-lg md:text-xl">
                 <GridList
-                    className="flex flex-wrap place-content-center gap-4 text-xl"
+                    className="flex flex-wrap place-content-center gap-2 md:gap-4 "
                     selectedKeys={selected}
                     selectionMode="single"
                     onSelectionChange={setSelected}
@@ -247,7 +247,7 @@ function GameWord({
 
     return (
         <MotionGridListItem
-            className="card-s md:card-m cursor-pointer bg-theme-invert font-semibold text-theme transition-all active:scale-95 selected:bg-primary-400 selected:text-light disabled:text-grey-400 md:text-3xl"
+            className="card-s cursor-pointer bg-theme-invert font-semibold text-theme transition-all active:scale-95 selected:bg-primary-400 selected:text-light disabled:text-grey-400"
             textValue={textValue}
             {...props}
             variants={gameWordVariants}>
